@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+
+import './question.dart';
+
+void main(List<String> args) {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+
+  final asnwere1 = ['YGN', 'Red', 'ZPA'];
+  final asnwere2 = ['MDY', 'Yellow', 'ZPA2'];
+  final asnwere3 = ['PG', 'Blue', 'ZPA3'];
+
+  void answerQuestion() {
+    setState(() {
+      _questionIndex++;
+    });
+
+    print(_questionIndex);
+  }
+
+  Widget build(BuildContext context) {
+    final _questions = [
+      'what is your address',
+      'what is your fav color',
+      'what is your name'
+    ];
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('My First App'),
+          ),
+          body: Column(
+            children: [
+              Question(_questions[_questionIndex]),
+              ElevatedButton(
+                onPressed: () => answerQuestion(),
+                child: Text(asnwere1[_questionIndex]),
+              ),
+              ElevatedButton(
+                onPressed: () => answerQuestion(),
+                child: Text(asnwere2[_questionIndex]),
+              ),
+              ElevatedButton(
+                onPressed: () => answerQuestion(),
+                child: Text(asnwere3[_questionIndex]),
+              )
+            ],
+          )),
+    );
+  }
+}
+
+import 'package:flutter/material.dart';
+
+class Question extends StatelessWidget {
+  final String question;
+
+  Question(this.question);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      question,
+      style: TextStyle(fontSize: 27),
+    );
+  }
+}
